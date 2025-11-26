@@ -1,12 +1,31 @@
 <script lang="ts">
-	import { redirect } from "@sveltejs/kit";
+	import { goto } from "$app/navigation";
 
     const signIn = async () => {
-        window.location.href = "http://localhost:5173/login?redirect_uri=http://localhost:5174/callback"
+        goto("/login");
     };
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<h1>Welcome to the client</h1>
 
 <button on:click={signIn}>Login</button>
+
+
+<style>
+    button {
+        padding: 10px 20px;
+        background-color: #ff8800;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #ff6600;
+    }
+
+    button:active {
+        background-color: #ff4400;
+    }
+</style>
