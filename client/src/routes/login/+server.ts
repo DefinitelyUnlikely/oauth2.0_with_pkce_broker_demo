@@ -1,18 +1,22 @@
-import { oauthVerifier } from '../../lib/stores/oauthStore';
+import { oauthState, oauthVerifier } from '../../lib/stores/oauthStore';
 import { generateVerifier, generateChallenge, generateState } from '../../lib/oauth';
 
-import { CLIENT_ID, REDIRECT_URI } from '$env/static/private';
+import { CLIENT_ID, REDIRECT_URI, BROKER_URL } from '$env/static/private';
+import { redirect } from '@sveltejs/kit';
 
 // Clear verifier just in case
 oauthVerifier.set(null);
+oauthState.set(null);
 
 // Generate verifier and challenge
 const verifier = await generateVerifier();
 const challenge = await generateChallenge(verifier);
 const state = await generateState();
 
-// Set verifier
+// Set verifier and state
 oauthVerifier.set(verifier);
+oauthState.set(state);
+
 const scope = 'openid profile';
 
 const params = new URLSearchParams({
@@ -22,5 +26,7 @@ const params = new URLSearchParams({
 	scope,
 	code_challenge: challenge,
 	code_challenge_method: 'S256',
-	state: 'some_random_state' // Should be random
+	state
 });
+
+throw redirect(302, `${BROKER_URL}/oauth/authorize?${params.toString()}`);
