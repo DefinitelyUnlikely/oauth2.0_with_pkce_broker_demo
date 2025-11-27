@@ -1,7 +1,7 @@
 import type { RequestHandler } from './$types';
 import { db } from '$lib/dataAccess/database';
 import { auth } from '$lib/auth';
-import { error } from '@sveltejs/kit';
+import { error, json } from '@sveltejs/kit';
 import { JWT_SECRET } from '$env/static/private';
 import { SignJWT } from 'jose';
 
@@ -88,11 +88,11 @@ export const POST: RequestHandler = async ({ request }) => {
 		.setExpirationTime('1h')
 		.sign(secret);
 
-	return new Response(
-		JSON.stringify({
-			token: jwt,
-			token_type: 'Bearer',
-			expires_in: 3600
-		})
-	);
+	await db.deleteFrom('oauth_codes').where('code', '=', code).execute();
+
+	return json({
+		token: jwt,
+		token_type: 'Bearer',
+		expires_in: 3600
+	});
 };
