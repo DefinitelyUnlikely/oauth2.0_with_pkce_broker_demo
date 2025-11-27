@@ -1,5 +1,4 @@
 import { redirect, type RequestHandler } from '@sveltejs/kit';
-import { oauthIdToken } from '$lib/stores/oauthStore';
 import { jwtVerify, createRemoteJWKSet } from 'jose';
 
 import { BROKER_URL, CLIENT_ID } from '$env/static/private';
@@ -43,7 +42,6 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 	}
 
 	const data = await response.json();
-	oauthIdToken.set(data.id_token);
 
 	// decode JWT, validate the signature
 	const JWKS = createRemoteJWKSet(new URL(`${BROKER_URL}/.well-known/jwks.json`));
