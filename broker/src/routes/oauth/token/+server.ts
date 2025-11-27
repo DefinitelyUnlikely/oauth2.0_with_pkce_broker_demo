@@ -53,11 +53,11 @@ export const POST: RequestHandler = async ({ request }) => {
 	}
 
 	if (authCode.client_id !== client_id) {
-		throw new Error('Invalid client id');
+		throw error(400, 'Invalid client id');
 	}
 
 	if (authCode.redirect_uri !== redirect_uri) {
-		throw new Error('Invalid redirect uri');
+		throw error(400, 'Invalid redirect uri');
 	}
 
 	const isValidChallenge = await verifyChallenge(
