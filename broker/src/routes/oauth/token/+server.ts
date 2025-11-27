@@ -53,7 +53,6 @@ export const POST: RequestHandler = async ({ request }) => {
 	}
 
 	if (authCode.client_id !== client_id) {
-		console.log(authCode.client_id, client_id);
 		throw error(400, 'Invalid client id');
 	}
 
@@ -70,9 +69,14 @@ export const POST: RequestHandler = async ({ request }) => {
 		throw error(400, 'Invalid code verifier');
 	}
 
-	const session = await auth.api.getSession(request);
+	const session = await auth.api.getSession({ headers: request.headers });
 
 	if (!session || !session.user || session.user.id !== authCode.user_id) {
+		console.log(`session: ${session}`);
+		if (session) {
+			console.log(`session.user: ${session.user.id}`);
+		}
+		console.log(`authCode.user_id: ${authCode.user_id}`);
 		throw error(401, 'Unauthorized');
 	}
 
