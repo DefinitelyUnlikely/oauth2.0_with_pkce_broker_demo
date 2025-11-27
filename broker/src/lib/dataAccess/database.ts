@@ -20,7 +20,7 @@ export interface OAuthCode {
 	code: string;
 	client_id: string;
 	redirect_uri: string;
-	expires_at: number;
+	expires_at: Date;
 	code_challenge: string;
 	code_challenge_method: string;
 }

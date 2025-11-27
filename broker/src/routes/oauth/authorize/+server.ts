@@ -1,6 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { error, redirect } from '@sveltejs/kit';
 import { nanoid } from 'nanoid';
+import { db } from '$lib/dataAccess/database';
 
 export const GET: RequestHandler = async ({ url, request }) => {
 	const client_id = url.searchParams.get('client_id');
@@ -31,6 +32,18 @@ export const GET: RequestHandler = async ({ url, request }) => {
 
 	const code = nanoid();
 	const expires_at = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+
+	await db
+		.insertInto('oauth_codes')
+		.values({
+			code,
+			client_id,
+			redirect_uri,
+			expires_at,
+			code_challenge,
+			code_challenge_method
+		})
+		.execute();
 
 	const redirectURL = new URL(redirect_uri);
 	redirectURL.searchParams.set('code', code);
