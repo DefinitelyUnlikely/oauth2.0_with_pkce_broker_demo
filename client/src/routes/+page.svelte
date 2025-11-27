@@ -4,11 +4,17 @@
     const signIn = async () => {
         goto("/login");
     };
+
+    const signOut = async () => {
+        goto("/logout");
+    };
+
+    const { user } = $props();
 </script>
 
 <h1>Welcome to the client</h1>
 
-<button on:click={signIn}>Login</button>
+<button onclick={signIn}>Login</button>
 
 
 <style>
