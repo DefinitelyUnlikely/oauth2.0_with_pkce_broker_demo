@@ -9,8 +9,10 @@ export const GET: RequestHandler = async ({ url, request }) => {
 		headers: request.headers
 	});
 
-	// Now, we need to contact all the service providers
-	// to let them know that the user has logged out and they need to invalidate the session
+	// For Single Logout, we need to contact all the service providers
+	// to let them know that they should invalidate their user session as well,
+	// given that we aren't issuing authorization tokens (which we could invalidate from the broker),
+	// only ID tokens.
 
 	if (redirectTo) {
 		redirect(302, redirectTo);

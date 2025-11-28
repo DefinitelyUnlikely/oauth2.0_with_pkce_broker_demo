@@ -52,10 +52,13 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 			audience: CLIENT_ID
 		});
 		// store the decoded values in a httpOnly cookie
+		// The Svelte team seems to recommend to use a cookie like this
+		// as a key for a server side state, but for the demo I'm using it
+		// to also keep track on logged in state directly.
 		cookies.set('oauth_id_token', data.id_token, {
 			path: '/',
 			httpOnly: true,
-			secure: false, // use true in production, false for development in http
+			secure: false,
 			sameSite: 'lax',
 			maxAge: 60 * 60 * 24 // 1 day
 		});
