@@ -39,4 +39,21 @@ As this is a demo, it is not a production-ready solution. It focuses on the **au
 
 1. Clone the repository
 2. Install dependencies: `npm i` for both the client and the identity broker.
-3. Create a .env file in/for both the client and the identity broker. 
+3. Create a .env file in/for both the client and the identity broker.
+4. For the demo, The broker needs:
+    - BETTER_AUTH_SECRET (generated at better-auth)
+    - BETTER_AUTH_URL (the base URL for your broker)
+    - GITHUB_CLIENT_SECRET (both this and client id can be created easily with GitHubs dev tools)
+    - GITHUB_CLIENT_ID
+    - PRIVATE_KEY_JWK 
+And if you want to try the demo out the gate with MS SQL, add these as well with your information:
+    - MSSQL_SERVER
+    - MSSQL_DATABASE
+    - MSSQL_PORT
+    - MSSQL_USER
+    - MSSQL_PASSWORD
+5. For the demo, the client needs:
+   - CLIENT_ID
+   - CLIENT_SECRET
+   - REDIRECT_URI (Where the broker should be doing callbacks)
+   - BROKER_URL (at what URL the broker exists)
