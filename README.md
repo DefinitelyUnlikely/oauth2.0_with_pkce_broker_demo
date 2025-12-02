@@ -4,7 +4,7 @@
 
 ### Context
 
-This project is a demo for the authentication flow I recommended for an in-house project during my time at an internship, where the goal was to research possible solutions for an SSO system using multiple identity providers. A key aspect was to make it as simple as possible to add more service providers as well as identity providers as needs evolve.
+This project is a demo for the authentication flow my team partner and I recommended for an in-house project during my time at an internship, where the goal was to research possible solutions for an SSO system using multiple identity providers. A key aspect was to make it as simple as possible to add more service providers as well as identity providers as needs evolve.
 
 ### Architecture
 
