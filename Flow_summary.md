@@ -2,12 +2,6 @@
 
 ## Infrastructure
 
-I created a demo of a client broker for apps capable of using server-to-server authentication. It implements the oauth 2.0 framework with PKCE. But be aware that the demo should be seen as documentation by code and not a ready to use implementation by any means.
-
-The demo can be found here: [Client Broker Demo](https://github.com/DefinitelyUnlikely/oauth2.0_with_pkce_broker_demo)
-
-also note: Service providers that lack server side capabilities implements the flow slightly different.
-
 ### Broker
 The broker is a web application that acts as a single source of truth for user authentication (and often authorization). The broker handles all contact with identity providers and service providers, acting as a bridge between the two. For the broker to act as a source of authentication for service providers, it needs to be implemented as an oauth 2.0 authorization server.
 
