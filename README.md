@@ -28,7 +28,9 @@ With the current implementation, adding a new identity provider is simply a matt
 
 ### Scope
 
-As this is a demo, it is not a production-ready solution. It focuses on the **authentication** (identifying the user) aspect rather than **authorization** (managing permissions) or user profile management. It does not establish a single source of truth for user claims but merely demonstrates the flow of identity verification. A common way to handle authorization is to use a database to store user claims and let the broker share those claims with the service provider, through a token. This is not implemented in this demo. But could be as simple as adding claims to the token(s) being exchanged.
+As this is a demo, it is not a production-ready solution. It focuses on the **authentication** (identifying the user) aspect rather than **authorization** (managing permissions) or user profile management. It does not establish a single source of truth for user claims but merely demonstrates the flow of identity verification. A common way to handle authorization (for a confidential client) is to use a database to store user claims and let the broker share those claims with the service provider, through a token. This is not implemented in this demo. But could be as simple as adding claims to the token(s) being exchanged.
+
+See the Authorization document for some thoughts on how to handle authorization for public clients.
 
 ### Built with
 
