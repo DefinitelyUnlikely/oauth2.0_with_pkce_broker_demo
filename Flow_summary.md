@@ -43,7 +43,7 @@ This document is meant to document the suggested new auth flow for service provi
 The suggested auth flow is following the oauth 2.0 authorization framework with proof key for code exchange (PKCE).
 This flow is well documented in their Request for Comments (RFC) documents: [Oauth 2.0 Auth Framework](https://datatracker.ietf.org/doc/html/rfc6749) and [Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636). 
 
-Using PKCE is recommended when service providers might be running in public clients (e.g. mobile apps, web apps, etc.). Cloey.Client is currently a public client, for example. 
+Using PKCE is recommended when service providers might be running in public clients (e.g. mobile apps, singe-page web apps, etc).
 
 All service providers need to be registered as trusted clients in the identity broker, with their correct callback URI (redirect URI) added to the client registration table. 
 
